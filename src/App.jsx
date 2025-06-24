@@ -14,6 +14,9 @@ import CreateCategory from './views/admin/category/CreateCategory.jsx';
 import ProductList from './views/admin/product/ProductList.jsx';
 import ProductForm from './views/admin/product/ProductForm.jsx';
 import Cart from './views/user/Cart.jsx';
+import OrderSuccess from './views/user/OrderSuccess.jsx';
+import OrderStatus from './views/order/orderStatus.jsx';
+import AddressForm from './views/user/AddressForm.jsx';
 function App() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -47,7 +50,7 @@ function App() {
 
   return (
     <>
-        <Router>
+      <Router>
         <Routes>
           {/* Public routes */}
           <Route path="/signup" element={<Signup />} />
@@ -59,22 +62,26 @@ function App() {
             <Route element={<DashboardLayout user={user} setUser={setUser} />}>
               {user.role === 'admin' && (
                 <>
-                 <Route path="/admin_dashboard" element={<AdminDashboard />} />
-                 <Route path="/user_profile" element={<EditProfie user={user} />} />
-                 <Route path="/admin/category" element={<CategoryList />} />
-                 <Route path="/admin/category/new" element={<CreateCategory />} />
-                 <Route path="/admin/category/:slug" element={<CreateCategory />} />
-                 <Route path="/admin/product" element={<ProductList />} />
-                 <Route path="/admin/product/new" element={<ProductForm />} />
-                 <Route path="/admin/product/:slug" element={<ProductForm />} />
+                  <Route path="/admin_dashboard" element={<AdminDashboard />} />
+                  <Route path="/user_profile" element={<EditProfie user={user} />} />
+                  <Route path="/admin/category" element={<CategoryList />} />
+                  <Route path="/admin/category/new" element={<CreateCategory />} />
+                  <Route path="/admin/category/:slug" element={<CreateCategory />} />
+                  <Route path="/admin/product" element={<ProductList />} />
+                  <Route path="/admin/product/new" element={<ProductForm />} />
+                  <Route path="/admin/product/:slug" element={<ProductForm />} />
+                  <Route path="/admin/order" element={<OrderStatus />} />
                 </>
-                
+
               )}
               {user.role === 'user' && (
                 <>
                   <Route path="/user_dashboard" element={<UserDashboard />} />
                   <Route path="/edit_profile" element={<EditProfie user={user} />} />
                   <Route path="/cart" element={<Cart />} />
+                  <Route path="/order" element={<OrderSuccess />} />
+                  <Route path="/address" element={<AddressForm />} />
+                  <Route path="/address/:id" element={<AddressForm />} />
                 </>
               )}
             </Route>

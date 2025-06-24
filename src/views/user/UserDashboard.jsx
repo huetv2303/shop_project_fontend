@@ -3,6 +3,8 @@ import HeaderUser from "./HeaderUser"
 import api from "../../api";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import { faCartArrowDown, faCartPlus } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function UserDashboard({ }) {
 
@@ -59,27 +61,35 @@ export default function UserDashboard({ }) {
                         <p>Đang tải sản phẩm...</p>
                     ) : (
                         <>
-                            <h2 className="text-xl font-semibold mt-4">Sản phẩm</h2>
-                            <div className="flex gap-4 flex-wrap mt-4">
-                                {products.map((product) => (
-                                    <div key={product.id} className="h-80 w-72 bg-white rounded-md text-center shadow p-4">
-                                        <div className="flex justify-center mb-2">
-                                            <img
-                                                src={`${apiBaseUrl}/images/${product.image}`}
-                                                alt="Product"
-                                                className="w-56 h-52 object-cover"
-                                            />
+                            <div className="bg-blue-100 p-4 rounded-md">
+                                <h2 className="text-xl font-bold mb-4">Sản phẩm</h2>
+                                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                                    {products.map((product) => (
+                                        <div
+                                            key={product.id}
+                                            className="aspect-[3/4] bg-white rounded-md shadow p-4 flex flex-col justify-between"
+                                        >
+                                            <div className="flex justify-center mb-2 h-[60%]">
+                                                <img
+                                                    src={`${apiBaseUrl}/images/${product.image}`}
+                                                    alt="Product"
+                                                    className="max-h-full object-contain"
+                                                />
+                                            </div>
+                                            <p className="font-semibold text-sm flex-1">{product.name}</p>
+                                            <div className="flex justify-between items-center mt-2">
+                                                <p className="text-gray-600 text-sm">{product.price}đ</p>
+                                                <button
+                                                    onClick={() => handleAddToCart(product.id)}
+                                                    className="bg-red-500 text-white rounded px-3 py-1 text-sm hover:bg-red-600"
+                                                >
+                                                    <FontAwesomeIcon icon={faCartPlus} />
+                                                </button>
+                                            </div>
                                         </div>
-                                        <p className="font-semibold">{product.name}</p>
-                                        <div className="flex justify-between items-center mt-2">
-                                            <p className="text-gray-600">{product.price}đ</p>
-                                            <button onClick={() => handleAddToCart(product.id)} className="bg-red-500 text-black rounded-lg px-4 py-2 hover:bg-red-600 transition-colors duration-300">
-                                                Thêm giỏ hàng
-                                            </button>
-                                        </div>
+                                    ))}
+                                </div>
 
-                                    </div>
-                                ))}
                             </div>
                         </>
                     )}

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import api from '../../../api';
+import HeaderAdmin from '../HeaderAdmin';
 
 const ProductForm = () => {
     const [loading, setLoading] = useState(false);
@@ -71,117 +72,121 @@ const ProductForm = () => {
         }
     };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setLoading(true);
 
-    const formData = new FormData();
-    for (const key in form) {
-        if (form[key] !== undefined && form[key] !== null) {
-            formData.append(key, form[key]);
-        }
-    }
-
-    try {
-        if (form.slug) {
-            await api.post(`/admin/products/${form.slug}?_method=PUT`, formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                }
-            });
-        } else {
-            await api.post('/admin/products', formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                }
-            });
+        const formData = new FormData();
+        for (const key in form) {
+            if (form[key] !== undefined && form[key] !== null) {
+                formData.append(key, form[key]);
+            }
         }
 
-        alert('Product saved successfully!');
-        navigate('/admin/product');
-    } catch (error) {
-        console.error('❌ Error saving product:', error.response?.data || error.message);
-        alert('Lỗi khi lưu sản phẩm!');
-    } finally {
-        setLoading(false);
-    }
-};
+        try {
+            if (form.slug) {
+                await api.post(`/admin/products/${form.slug}?_method=PUT`, formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                });
+            } else {
+                await api.post('/admin/products', formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                });
+            }
+
+            alert('Product saved successfully!');
+            navigate('/admin/product');
+        } catch (error) {
+            console.error('❌ Error saving product:', error.response?.data || error.message);
+            alert('Lỗi khi lưu sản phẩm!');
+        } finally {
+            setLoading(false);
+        }
+    };
     return (
-        <div>
-            <h1>{slug ? `Update Product: ${form.name}` : 'New Product'}</h1>
-            <div className="card animated fadeInDown">
-                {loading && <div className="text-center">Loading...</div>}
-                {!loading && (
-                    <form onSubmit={handleSubmit} className="space-y-3 flex flex-col">
-                        <input
-                            onChange={handleChange}
-                            value={form.name}
-                            name="name"
-                            placeholder="Tên sản phẩm"
-                        />
-                        <input
-                            onChange={handleChange}
-                            value={form.description}
-                            name="description"
-                            placeholder="Mô tả"
-                        />
-                        <input
-                            onChange={handleChange}
-                            value={form.price}
-                            name="price"
-                            type="number"
-                            placeholder="Giá"
-                        />
-                        <input
-                            onChange={handleChange}
-                            value={form.quantity}
-                            name="quantity"
-                            type="number"
-                            placeholder="Số lượng"
-                        />
-                        <input
-                            type="file"
-                            accept="image/*"
-                            name="image"
-                            onChange={handleChange}
-                        />
+        <>
+            <HeaderAdmin />
+            <div>
+                <h1>{slug ? `Update Product: ${form.name}` : 'New Product'}</h1>
+                <div className="card animated fadeInDown">
+                    {loading && <div className="text-center">Loading...</div>}
+                    {!loading && (
+                        <form onSubmit={handleSubmit} className="space-y-3 flex flex-col">
+                            <input
+                                onChange={handleChange}
+                                value={form.name}
+                                name="name"
+                                placeholder="Tên sản phẩm"
+                            />
+                            <input
+                                onChange={handleChange}
+                                value={form.description}
+                                name="description"
+                                placeholder="Mô tả"
+                            />
+                            <input
+                                onChange={handleChange}
+                                value={form.price}
+                                name="price"
+                                type="number"
+                                placeholder="Giá"
+                            />
+                            <input
+                                onChange={handleChange}
+                                value={form.quantity}
+                                name="quantity"
+                                type="number"
+                                placeholder="Số lượng"
+                            />
+                            <input
+                                type="file"
+                                accept="image/*"
+                                name="image"
+                                onChange={handleChange}
+                            />
 
-                        {previewImage && (
-                            <div>
-                                <p>Ảnh hiện tại:</p>
-                                <img src={previewImage} alt="Preview" style={{ width: '150px', marginTop: '10px' }} />
-                            </div>
-                        )}
+                            {previewImage && (
+                                <div>
+                                    <p>Ảnh hiện tại:</p>
+                                    <img src={previewImage} alt="Preview" style={{ width: '150px', marginTop: '10px' }} />
+                                </div>
+                            )}
 
-                        <select
-                            name="category_id"
-                            onChange={handleChange}
-                            value={form.category_id}
-                        >
-                            <option value="">-- Chọn danh mục --</option>
-                            {categories.map(category => (
-                                <option key={category.id} value={category.id}>
-                                    {category.name}
-                                </option>
-                            ))}
-                        </select>
+                            <select
+                                name="category_id"
+                                onChange={handleChange}
+                                value={form.category_id}
+                            >
+                                <option value="">-- Chọn danh mục --</option>
+                                {categories.map(category => (
+                                    <option key={category.id} value={category.id}>
+                                        {category.name}
+                                    </option>
+                                ))}
+                            </select>
 
-                        <select
-                            name="status"
-                            value={form.status}
-                            onChange={handleChange}
-                        >
-                            <option value="active">Hoạt động</option>
-                            <option value="inactive">Không hoạt động</option>
-                        </select>
+                            <select
+                                name="status"
+                                value={form.status}
+                                onChange={handleChange}
+                            >
+                                <option value="active">Hoạt động</option>
+                                <option value="inactive">Không hoạt động</option>
+                            </select>
 
-                        <button type="submit" className="bg-blue-500 text-white px-3 py-1 rounded">
-                            Lưu
-                        </button>
-                    </form>
-                )}
+                            <button type="submit" className="bg-blue-500 text-white px-3 py-1 rounded">
+                                Lưu
+                            </button>
+                        </form>
+                    )}
+                </div>
             </div>
-        </div>
+        </>
+
     );
 };
 

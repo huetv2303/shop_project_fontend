@@ -1,6 +1,7 @@
 import React, { use, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import api from '../../../api';
+import HeaderAdmin from '../HeaderAdmin';
 
 const CreateCategory = () => {
     const { slug } = useParams();
@@ -37,8 +38,8 @@ const CreateCategory = () => {
         setForm({ ...form, [e.target.name]: e.target.value });
     }
 
-    
-  
+
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
@@ -64,20 +65,23 @@ const CreateCategory = () => {
 
 
     return (
-        <div>
-            {form.slug && <h1>Update Category: {form.name}</h1>}
-            {!form.slug && <h1>New category</h1>}
-            <div className="card animated fadeInDown">
-                {loading && <div className="text-center">Loading...</div>}
-                {!loading && (
-                    <form onSubmit={handleSubmit} className="space-y-3 flex flex-col">
-                        <input onChange={handleChange} value={form.name} name='name' placeholder="Tên danh mục" />
-                        <input onChange={handleChange} value={form.description} type="text" name='description' placeholder="Mô tả" />
-                        <button className='bg-blue-500 text-white px-3 py-1 rounded '>Save</button>
-                    </form>
-                )}
+        <>
+            <HeaderAdmin />
+            <div>
+                {form.slug && <h1>Update Category: {form.name}</h1>}
+                {!form.slug && <h1>New category</h1>}
+                <div className="card animated fadeInDown">
+                    {loading && <div className="text-center">Loading...</div>}
+                    {!loading && (
+                        <form onSubmit={handleSubmit} className="space-y-3 flex flex-col">
+                            <input onChange={handleChange} value={form.name} name='name' placeholder="Tên danh mục" />
+                            <input onChange={handleChange} value={form.description} type="text" name='description' placeholder="Mô tả" />
+                            <button className='bg-blue-500 text-white px-3 py-1 rounded '>Save</button>
+                        </form>
+                    )}
+                </div>
             </div>
-        </div>
+        </>
     )
 }
 

@@ -25,24 +25,24 @@ export default function Navbar({ user, setUser }) {
     }
   };
 
-  return (
-    <nav className="bg-gray-200 p-4 flex justify-between">
-      <div className="space-x-4">
-        {user.role === 'admin' ? (
-          <>
-            <Link to="/admin_dashboard">Admin Dashboard</Link>
-            <Link to="/user_profile">Thông tin cá nhân</Link>
-            <Link to="/admin/category">Quản lý danh mục</Link>
-            <Link to="/admin/product">Quản lý sản phẩm</Link>
-          </>
-        ) : (
-          <>
-            {/* <Link to="/user_dashboard">User Dashboard</Link>
-            <Link to="/edit_profile">Thông tin cá nhân</Link> */}
-          </>
-        )}
-      </div>
-      <a onClick={onLogout} className="text-red-500 cursor-pointer">Đăng xuất</a>
-    </nav>
-  );
+  // return (
+  //   <nav className="bg-gray-200 p-4 flex justify-between">
+  //     <div className="space-x-4">
+  //       {user.role === 'admin' ? (
+  //         <>
+  //           <Link to="/admin_dashboard">Admin Dashboard</Link>
+  //           <Link to="/user_profile">Thông tin cá nhân</Link>
+  //           <Link to="/admin/category">Quản lý danh mục</Link>
+  //           <Link to="/admin/product">Quản lý sản phẩm</Link>
+  //         </>
+  //       ) : (
+  //         <>
+  //           {/* <Link to="/user_dashboard">User Dashboard</Link>
+  //           <Link to="/edit_profile">Thông tin cá nhân</Link> */}
+  //         </>
+  //       )}
+  //     </div>
+  //     {/* <a onClick={onLogout} className="text-red-500 cursor-pointer">Đăng xuất</a> */}
+  //   </nav>
+  // );
 }

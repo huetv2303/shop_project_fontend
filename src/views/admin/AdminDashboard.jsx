@@ -1,8 +1,17 @@
+import { Link } from "react-router-dom";
+import api from '../../api';
+import { toast } from "react-toastify";
+import Header from "../Header";
+import HeaderAdmin from "./HeaderAdmin";
+
 export default function AdminDashboard() {
+
   return (
-    <div className="p-4">
-      <h2 className="text-lg font-bold">Chào mừng Admin!</h2>
-      {/* Nội dung dashboard */}
-    </div>
+    <>
+        <HeaderAdmin />
+        <div>
+          
+        </div>
+    </>
   );
 }

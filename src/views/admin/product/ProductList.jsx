@@ -1,6 +1,7 @@
 import React, { use, useEffect, useState } from 'react'
 import api from '../../../api';
 import { Link } from 'react-router-dom';
+import HeaderAdmin from '../HeaderAdmin';
 
 const ProductList = () => {
   const [loading, setLoading] = useState(false);
@@ -38,6 +39,8 @@ const ProductList = () => {
     }
   }
   return (
+    <>
+      <HeaderAdmin />
     <div className='overflow-x-auto '>
       <div className="flex justify-end my-3">
         <input
@@ -106,6 +109,7 @@ const ProductList = () => {
         </tbody>
       </table>
     </div>
+    </>
   )
 }
 
