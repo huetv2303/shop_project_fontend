@@ -60,7 +60,7 @@ const OrderSuccess = () => {
       case 'shipping':
         return <span className='text-blue-600 font-bold'>Đơn hàng đang được giao.</span>;
       case 'delivered':
-        return <span className='text-green-700 font-bold'>Giao thành công.</span>;
+        return <span className='text-green-700 font-bold'>Đã hoàn tất đơn hàng.</span>;
       case 'canceled':
         return <span className='text-red-600 font-bold'>Đã hủy!</span>;
       default:
@@ -83,7 +83,7 @@ const OrderSuccess = () => {
               <div key={order.id} className="border-b border-gray-300 py-4">
                 <div className='flex justify-between items-center mb-4'>
                   <p className='text-xl font-semibold'>Mã đơn hàng: #{order.id}</p>
-                  <p className="text -xl font-semibold">Trạng thái: {renderButton(order)}</p>
+                  <p className="text -xl font-semibold">{renderButton(order)}</p>
                 </div>
                 <div className='flex justify-between items-center mb-4'>
                   <p className="text-gray-600">Người đặt: {order.user.name}</p>
