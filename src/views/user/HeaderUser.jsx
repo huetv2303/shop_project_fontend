@@ -29,9 +29,9 @@ const HeaderUser = () => {
       <div className='flex gap-4 items-center'>
         <Link to="/cart"><FontAwesomeIcon icon={faCartArrowDown} /></Link>
         <Link to="/edit_profile"><FontAwesomeIcon icon={faUser} /></Link>
-        <Link><FontAwesomeIcon icon={faReceipt} /></Link>
+        <Link to="/order"><FontAwesomeIcon icon={faReceipt} /></Link>
 
-        <Link><FontAwesomeIcon icon={faBell} /></Link>
+        <Link to="/notification"><FontAwesomeIcon icon={faBell} /></Link>
         <div onClick={handleLogout} className='cursor-pointer'><FontAwesomeIcon icon={faRightToBracket} /></div>
 
       </div>

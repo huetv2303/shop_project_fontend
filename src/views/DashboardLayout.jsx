@@ -1,6 +1,4 @@
-import React from 'react'
-import Navbar from './Navbar'
-import Header from './Header'
+
 import { Outlet } from 'react-router-dom'
 const DashboardLayout = ({user, setUser}) => {
   return (

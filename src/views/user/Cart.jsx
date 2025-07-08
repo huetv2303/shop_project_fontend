@@ -159,7 +159,7 @@ const Cart = () => {
                                     </div>
                                     <div>
                                         <button onClick={() => handleRemoveItem(item.id)} className='bg-red-500 text-white px-4 py-2 rounded'>Xóa</button>
-                                        <p className='text-red-500 mt-16 text-xl font-bold'>Tổng tiền: {item.product.price * item.quantity}đ</p>
+                                        <p className='text-red-500 mt-16 text-sm font-bold'>Tổng tiền: {item.product.price * item.quantity}đ</p>
                                     </div>
                                 </div>
 

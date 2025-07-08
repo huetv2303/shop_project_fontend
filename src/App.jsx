@@ -15,7 +15,7 @@ import ProductList from './views/admin/product/ProductList.jsx';
 import ProductForm from './views/admin/product/ProductForm.jsx';
 import Cart from './views/user/Cart.jsx';
 import OrderSuccess from './views/user/OrderSuccess.jsx';
-import OrderStatus from './views/order/orderStatus.jsx';
+import OrderStatus from './views/order/OrderStatus.jsx';
 import AddressForm from './views/user/AddressForm.jsx';
 function App() {
   const [user, setUser] = useState(null);
