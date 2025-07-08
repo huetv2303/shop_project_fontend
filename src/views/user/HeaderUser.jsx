@@ -31,7 +31,7 @@ const HeaderUser = () => {
         <Link to="/edit_profile"><FontAwesomeIcon icon={faUser} /></Link>
         <Link to="/order"><FontAwesomeIcon icon={faReceipt} /></Link>
 
-        <Link to="/notification"><FontAwesomeIcon icon={faBell} /></Link>
+        <Link ><FontAwesomeIcon icon={faBell} /></Link>
         <div onClick={handleLogout} className='cursor-pointer'><FontAwesomeIcon icon={faRightToBracket} /></div>
 
       </div>
