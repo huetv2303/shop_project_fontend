@@ -46,6 +46,7 @@ export default function Login({setUser}) {
                 <input type="email" name="email" placeholder="Email" className="w-full border p-2" value={form.email} onChange={handleChange}/>
                 <input type="password" name="password" placeholder="Mật khẩu" className="w-full border p-2" value={form.password} onChange={handleChange}/>
                 <button type="submit" className="bg-blue-500 text-white p-2 rounded">Đăng nhập</button>
+                {error}
             </form>
         </div>
     );

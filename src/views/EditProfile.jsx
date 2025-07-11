@@ -10,9 +10,7 @@ const EditProfile = ({ user }) => {
     id: user?.id || '',
     name: user?.name || '',
     email: user?.email || '',
-    current_password: '',
-    new_password: '',
-    new_password_confirmation: ''
+   
   });
 
   const handleChange = (e) => {
@@ -21,6 +19,7 @@ const EditProfile = ({ user }) => {
       ...prev,
       [name]: value
     }));
+    console.log(`Changed ${name} to ${value}`); // Debugging log
   };
 
   const handleSubmit = async (e) => {

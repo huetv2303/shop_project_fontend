@@ -18,15 +18,24 @@ const Cart = () => {
         fetchAddress();
     }, []);
 
+
+    const handleDelete = async (address) => {
+        if (window.confirm(`Bạn có chắc chắn muốn xóa địa chỉ: ${address.name}?`)) {
+            api.delete('/address/' + address.id)
+            fetchAddress();
+            console.log(`Xóa địa chỉ: ${address.id}`);
+        }
+    }
+
     const handleOrder = async () => {
         setLoading(true);
         try {
             const response = await api.post('/order', {
                 address_id: form.address_id,
-                cart_items: cartItems.map(item => ({
-                    product_id: item.product.id,
-                    quantity: item.quantity
-                })),
+                // cart_items: cartItems.map(item => ({
+                //     product_id: item.product.id,
+                //     quantity: item.quantity
+                // })),
                 payment_method: form.payment_method,
             });
 
@@ -182,16 +191,32 @@ const Cart = () => {
                                 onChange={handleChange}
                                 value={form.address_id}
                             >
-                                <option value="">-- Chọn địa chỉ --</option>
+                                <option value="">-----Chọn địa chỉ-------</option>
                                 {address.map(addr => (
-                                    <option key={addr.id} value={addr.id}>
-                                        {addr.address} - {addr.phone}
-                                    </option>
+                                    <>
+                                        <option key={addr.id} value={addr.id}>
+                                            {addr.address} - {addr.phone}
+                                        </option>
+
+                                    </>
                                 ))}
                             </select>
 
                             {form.address_id && (
-                                <Link to={`/address/${form.address_id}`}>Sửa</Link>
+                                <>
+                                    <Link className='bg-blue-500 text-white px-3 py-1 rounded mx-2' to={`/address/${form.address_id}`}>Sửa</Link>
+                                    <button
+                                        className='bg-red-500 text-white px-3 py-1 rounded'
+                                        onClick={ev => {
+                                            const selectedAddress = address.find(a => a.id == form.address_id);
+                                            handleDelete(selectedAddress);
+                                        }}
+                                    >
+                                        Xóa
+                                    </button>
+
+                                </>
+
                             )}
 
                         </div>
@@ -204,7 +229,7 @@ const Cart = () => {
                                 name="payment_method"
                                 onChange={handleChange}
                             >
-                                <option value="">-- Chọn phương thức thanh toán --</option>
+
                                 <option>
                                     Thanh toán khi nhận hàng
                                 </option>
